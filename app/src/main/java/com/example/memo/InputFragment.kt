@@ -6,6 +6,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import kotlinx.android.synthetic.main.fragment_input.*
+import kotlinx.android.synthetic.main.fragment_input.view.*
 import java.io.File
 
 class InputFragment : Fragment() {
@@ -32,7 +33,7 @@ class InputFragment : Fragment() {
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         val view = inflater.inflate(R.layout.fragment_input, container, false)
 
-        save.setOnClickListener {
+        view.save.setOnClickListener {
             currentFile = outputFile(currentFile, content.text.toString())
             if (context is OnFileOutputListener) {
                 (context as OnFileOutputListener).onFileOutput()

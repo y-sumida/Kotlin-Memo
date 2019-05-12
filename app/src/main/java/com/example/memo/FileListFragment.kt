@@ -3,11 +3,14 @@ package com.example.memo
 import android.content.Context
 import android.os.Bundle
 import android.support.v4.app.Fragment
+import android.support.v4.app.FragmentManager
 import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import kotlinx.android.synthetic.main.fragment_list.*
+import kotlinx.android.synthetic.main.fragment_list.view.*
 import java.io.File
 
 class FileListFragment : Fragment() {
@@ -15,7 +18,7 @@ class FileListFragment : Fragment() {
         fun onFileSelected(file: File)
     }
 
-    private lateinit var recyclerView: RecyclerView
+    private lateinit var fileList : RecyclerView
 
     override fun onAttach(context: Context?) {
         super.onAttach(context)
@@ -27,8 +30,10 @@ class FileListFragment : Fragment() {
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         val view = inflater.inflate(R.layout.fragment_list, container, false)
 
+        fileList = view.fileList
+
         val layoutManager = LinearLayoutManager(context, LinearLayoutManager.VERTICAL, false)
-        recyclerView.layoutManager = layoutManager
+        fileList.layoutManager = layoutManager
 
         show()
         return view
@@ -38,8 +43,8 @@ class FileListFragment : Fragment() {
         val ctx = context ?: return
 
         val adapter = FilesAdapter(ctx, getFiles()) { file ->
-            (context as OnFilesSelectListener).onFileSelected(file)
+            (ctx as OnFilesSelectListener).onFileSelected(file)
         }
-        recyclerView.adapter = adapter
+        fileList.adapter = adapter
     }
 }
