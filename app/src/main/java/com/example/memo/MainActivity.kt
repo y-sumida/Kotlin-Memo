@@ -46,7 +46,10 @@ class MainActivity : AppCompatActivity(),
     override fun onFileSelected(file: File) {
         val fragment = supportFragmentManager.findFragmentById(R.id.input) as InputFragment
         fragment.show(file)
-        drawerLayout.closeDrawer(GravityCompat.START)
+
+        if (drawerLayout != null) {
+            drawerLayout.closeDrawer(GravityCompat.START)
+        }
     }
 
     override fun onFileOutput() {
