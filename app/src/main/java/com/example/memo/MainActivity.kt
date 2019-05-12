@@ -7,6 +7,7 @@ import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.support.v4.app.ActivityCompat
 import android.support.v4.content.ContextCompat
+import android.support.v4.view.GravityCompat
 import android.support.v4.widget.DrawerLayout
 import android.support.v7.app.ActionBarDrawerToggle
 import android.view.MenuItem
@@ -45,6 +46,7 @@ class MainActivity : AppCompatActivity(),
     override fun onFileSelected(file: File) {
         val fragment = supportFragmentManager.findFragmentById(R.id.input) as InputFragment
         fragment.show(file)
+        drawerLayout.closeDrawer(GravityCompat.START)
     }
 
     override fun onFileOutput() {
